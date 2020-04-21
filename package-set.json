@@ -1,0 +1,14 @@
+[
+  {
+    "name": "base",
+    "repo": "git@github.com:dfinity-lab/motoko-base.git",
+    "version": "master",
+    "dependencies": []
+  },
+  {
+    "name": "base-local",
+    "repo": "/Users/matthew/dfn/motoko-base",
+    "version": "master",
+    "dependencies": []
+  }
+]
