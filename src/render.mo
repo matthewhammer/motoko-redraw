@@ -1,12 +1,12 @@
 // 2D rendering abstractions
 import Nat "mo:stdlib/nat";
 import Buf "mo:stdlib/buf";
-import Debug "../common/DebugOff";
 import List "mo:stdlib/list";
 import P "mo:stdlib/prelude";
 import I "mo:stdlib/iter";
 
-import Stack "../common/stack";
+import Stack "mo:stand/stack";
+import Debug "mo:stand/DebugOff";
 
 module {
 

@@ -4,6 +4,5 @@ import Animate "animate";
 actor {
   public func _animate() : async Animate.Anim {
     P.xxx()
-x
   };
 }
