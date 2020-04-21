@@ -2,5 +2,5 @@
  "name": "redraw",
   "repo": "/home/hammer/motoko-redraw",
   "version": "v1.0.0",
-  "dependencies": ["base", "base-local"]
+  "dependencies": ["stdlib"]
 }
