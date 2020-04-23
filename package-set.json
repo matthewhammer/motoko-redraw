@@ -2,13 +2,13 @@
   {
     "name": "base",
     "repo": "/Users/matthew/dfn/motoko-base",
-    "version": "master",
+    "version": "imports",
     "dependencies": []
   },
   {
     "name": "stand",
     "repo": "/Users/matthew/dfn/motoko-stand",
     "version": "master",
-    "dependencies": ["stdlib"]
+    "dependencies": ["base"]
   }
 ]
