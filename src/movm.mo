@@ -25,7 +25,7 @@
 
 */
 import Render "render";
-import P "mo:stdlib/prelude";
+import P "mo:base/prelude";
 
 module {
 
