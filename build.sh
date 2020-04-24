@@ -1,1 +1,1 @@
-moc `./vessel sources` -c src/test.mo
+moc `./vessel sources` --package redraw src -c test/test.mo

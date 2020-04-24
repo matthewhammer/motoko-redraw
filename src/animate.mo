@@ -1,4 +1,4 @@
-import P "mo:stdlib/prelude";
+import P "mo:base/prelude";
 import Movm "movm";
 import Render "render";
 
