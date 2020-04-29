@@ -1,13 +1,13 @@
 [
   {
     "name": "base",
-    "repo": "/Users/matthew/dfn/motoko-base",
+    "repo": "git@github.com:dfinity-lab/motoko-base.git",
     "version": "imports",
     "dependencies": []
   },
   {
     "name": "stand",
-    "repo": "/Users/matthew/dfn/motoko-stand",
+    "repo": "git@github.com:matthewhammer/motoko-stand.git",
     "version": "master",
     "dependencies": ["base"]
   }
