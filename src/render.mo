@@ -263,6 +263,11 @@ module {
       elms[0]
     };
 
+    public func getResult() : Result {
+      let elm = getElm();
+      #ok(#draw(elm))
+    };
+
   };
 
   func dimOfElm(elm:Elm) : Dim {
