@@ -16,7 +16,5 @@ In progress:
 
 See also: 
 
+- The [IC Game Terminal](https://github.com/matthewhammer/ic-game-terminal) recognizes/draws this graphical output.
 - The ["thin" IC Agent](https://github.com/matthewhammer/zqm/pull/6) recognizes/draws this graphical output.
-
-
-
