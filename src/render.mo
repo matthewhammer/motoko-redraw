@@ -1,5 +1,6 @@
 // 2D rendering abstractions
 import Nat "mo:base/nat";
+import Char "mo:base/Char";
 import Buf "mo:base/buf";
 import List "mo:base/list";
 import P "mo:base/prelude";
@@ -8,58 +9,27 @@ import I "mo:base/iter";
 import Stack "mo:stand/stack";
 import Debug "mo:stand/DebugOff";
 
+import Types "Types";
+import Mono5x5 "glyph/Mono5x5";
+
 module {
 
-  public type Color = (Nat, Nat, Nat);
-
-  public type Dim = { width: Nat;
-                      height: Nat };
-
-  public type Pos = { x:Nat;
-                      y:Nat };
-
-  public type Rect = { pos:Pos;
-                       dim:Dim };
-
-  public type Node = { rect: Rect;
-                       fill: Fill;
-                       elms: Elms };
-
-  public type Elm = { #rect: (Rect, Fill);
-                      #text: (Text, TextAtts);
-                      #node: Node };
-
-  public type Fill = {#open: (Color, Nat);
-                      #closed: Color;
-                      #none};
-
-  public type Elms = [Elm];
-
-  public type Out = {
-    #draw:Elm;
-    #redraw:[(Text, Elm)];
-  };
-
-  public type Result = {
-    #ok: Out;
-    #err: Out;
-  };
-
-  public type TextAtts = {
-    zoom: Nat;
-    fgFill: Fill;
-    bgFill: Fill;
-    glyphDim: Dim;
-    glyphFlow: FlowAtts;
-  };
-
-  public type FlowAtts = {
-    dir: Dir2D;
-    intraPad: Nat;
-    interPad: Nat;
-  };
-
-  public type Dir2D = {#up; #down; #left; #right};
+  public type Color = Types.Color;
+  public type Dim = Types.Dim;
+  public type Pos = Types.Pos;
+  public type Rect = Types.Rect;
+  public type Node = Types.Node;
+  public type Elm = Types.Elm;
+  public type Fill = Types.Fill;
+  public type Elms = Types.Elms;
+  public type Out = Types.Out;
+  public type Result = Types.Result;
+  public type TextAtts = Types.TextAtts;
+  public type FlowAtts = Types.FlowAtts;
+  public type Dir2D = Types.Dir2D;
+  public type BitMapData = Types.BitMapData;
+  public type BitMapAtts = Types.BitMapAtts;
+  public type BitMapTextAtts = Types.BitMapTextAtts;
 
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {
@@ -219,6 +189,36 @@ module {
       frame.elms.add(#rect(r, f))
     };
 
+    public func bitmap(bd : BitMapData, ba : BitMapAtts) {
+      let cellDim = { width = ba.zoom; height = ba.zoom };
+      for (i in I.range(0, bd.dim.width)) {
+        for (j in I.range(0, bd.dim.height)) {
+          let cellRect = {
+            pos = { x = i * ba.zoom;
+                    y = j * ba.zoom;
+            };
+            dim = cellDim;
+          };
+          let cellFill =
+            if (bd.bits[i][j]) {
+            ba.fgFill
+          }
+          else {
+            ba.bgFill
+          };
+          rect(cellRect, cellFill);
+        }
+      }
+    };
+
+    public func bitmapText(bdf : Char -> BitMapData, bta : BitMapTextAtts, t: Text) {
+      begin(#flow(bta.flow));
+      for (c in t.chars()) {
+        bitmap(bdf c, bta)
+      };
+      end();
+    };
+
     func text_(t:Text, ta:TextAtts) {
       Debug.print "text begin";
       Debug.print t;
@@ -232,6 +232,7 @@ module {
       text_(t, ta);
       end();
     };
+
 
     public func end() {
       Debug.print "end";
