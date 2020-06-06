@@ -20,7 +20,7 @@ module {
   };
 
   func bitsOfChar(ch:Char) : ?[[Bool]] {
-    let c = false; // pronounced "cypher"
+    let c = false; // pronounced "cipher"
     let t = true;
     switch ch {
       case '☺' ?[
