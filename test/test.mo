@@ -1,8 +1,8 @@
-import P "mo:base/prelude";
-import Animate "mo:redraw/animate";
+import Render "mo:redraw/render";
 
 actor {
-  public func _animate() : async Animate.Anim {
-    P.xxx()
+  public func redraw() : async Render.Result {
+    // to do
+    #ok(#redraw([]))
   };
 }

@@ -61,6 +61,17 @@ module {
 
   public type Dir2D = {#up; #down; #left; #right};
 
+  public type BitMapData = {
+    dim: Dim;
+    bits: [[Bool]];
+  };
+
+  public type BitMapAtts = {
+    zoom: Nat;
+    fgFill: Fill;
+    bgFill: Fill;
+  };
+
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {
     // case 1: use a vertical division to prove apartness:
