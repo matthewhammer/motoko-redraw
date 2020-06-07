@@ -243,6 +243,7 @@ module {
         bitmap(bdf c, bta);
         end()
       };
+      end()
     };
 
     public func end() {
