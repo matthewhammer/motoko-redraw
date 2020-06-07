@@ -522,7 +522,7 @@ module {
     public func char(c:Char) {
       render.bitmap(bitmapData c, bitmapTextAtts)
     };
-    public func textAtts(c:Char,
+    public func charAtts(c:Char,
                          atts:{
       zoom:Nat;
       fgFill:Fill;
@@ -534,13 +534,13 @@ module {
       char(c);
       bitmapTextAtts := saved;
     };
-    public func textFg(c:Char, fgFill:Fill) {
+    public func charFg(c:Char, fgFill:Fill) {
       let saved = bitmapTextAtts;
       bitmapTextAtts := textAttsFg(bitmapTextAtts, fgFill);
       char(c);
       bitmapTextAtts := saved;
     };
-    public func textBg(c:Char, fgFill:Fill, bgFill:Fill) {
+    public func charBg(c:Char, fgFill:Fill, bgFill:Fill) {
       let saved = bitmapTextAtts;
       bitmapTextAtts := textAttsBg(bitmapTextAtts, fgFill, bgFill);
       char(c);
