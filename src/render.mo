@@ -487,19 +487,18 @@ module {
   };
 
   public class CharRender(r:Render, bdf : Char -> BitMapData, bta : BitMapTextAtts) {
+    public var render = r;
     public var bitmapData = bdf;
     public var bitmapTextAtts = bta;
-    public var render = r;
     public func char(c:Char) {
-      r.bitmap(bdf c, bta)
+      render.bitmap(bitmapData c, bitmapTextAtts)
     };
   };
 
   public class TextRender(cr:CharRender) {
     public var charRender = cr;
-    public var render = cr.render;
     public func text(t:Text) {
-      cr.render.bitmapText(
+      charRender.render.bitmapText(
         cr.bitmapData,
         cr.bitmapTextAtts,
         t)
