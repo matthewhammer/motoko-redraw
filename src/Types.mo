@@ -16,7 +16,6 @@ module {
                        elms: Elms };
 
   public type Elm = { #rect: (Rect, Fill);
-                      #text: (Text, TextAtts);
                       #node: Node };
 
   public type Fill = {#open: (Color, Nat);
@@ -33,14 +32,6 @@ module {
   public type Result = {
     #ok: Out;
     #err: Out;
-  };
-
-  public type TextAtts = {
-    zoom: Nat;
-    fgFill: Fill;
-    bgFill: Fill;
-    glyphDim: Dim;
-    glyphFlow: FlowAtts;
   };
 
   public type FlowAtts = {
