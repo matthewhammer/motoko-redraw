@@ -50,6 +50,35 @@ module {
     false
   };
 
+
+  // because Motoko lacks nice record update syntax
+  public func textAttsPut(ta:BitMapTextAtts,
+                          atts:{zoom:Nat; fgFill:Fill; bgFill:Fill}) : BitMapTextAtts {
+    { zoom = atts.zoom;
+      fgFill = atts.fgFill;
+      bgFill = atts.bgFill;
+      flow = ta.flow;
+    }
+  };
+
+  // because Motoko lacks nice record update syntax
+  public func textAttsFg(ta:BitMapTextAtts, fg:Fill) : BitMapTextAtts {
+    { zoom = ta.zoom;
+      fgFill = fg;
+      bgFill = ta.bgFill;
+      flow = ta.flow;
+    }
+  };
+
+  // because Motoko lacks nice record update syntax
+  public func textAttsBg(ta:BitMapTextAtts, fg:Fill, bg:Fill) : BitMapTextAtts {
+    { zoom = ta.zoom;
+      fgFill = fg;
+      bgFill = bg;
+      flow = ta.flow;
+    }
+  };
+
   public func checkElmsApart(elm1:Elm, elm2:Elm) : Bool {
     let rect1 = boundingRectOfElm(elm1);
     let rect2 = boundingRectOfElm(elm2);
@@ -493,6 +522,30 @@ module {
     public func char(c:Char) {
       render.bitmap(bitmapData c, bitmapTextAtts)
     };
+    public func textAtts(c:Char,
+                         atts:{
+      zoom:Nat;
+      fgFill:Fill;
+      bgFill:Fill
+    }) {
+      let saved = bitmapTextAtts;
+      bitmapTextAtts :=
+      textAttsPut(bitmapTextAtts, atts);
+      char(c);
+      bitmapTextAtts := saved;
+    };
+    public func textFg(c:Char, fgFill:Fill) {
+      let saved = bitmapTextAtts;
+      bitmapTextAtts := textAttsFg(bitmapTextAtts, fgFill);
+      char(c);
+      bitmapTextAtts := saved;
+    };
+    public func textBg(c:Char, fgFill:Fill, bgFill:Fill) {
+      let saved = bitmapTextAtts;
+      bitmapTextAtts := textAttsBg(bitmapTextAtts, fgFill, bgFill);
+      char(c);
+      bitmapTextAtts := saved;
+    };
   };
 
   public class TextRender(cr:CharRender) {
@@ -502,6 +555,30 @@ module {
         cr.bitmapData,
         cr.bitmapTextAtts,
         t)
+    };
+    public func textAtts(t:Text,
+                         atts:{
+      zoom:Nat;
+      fgFill:Fill;
+      bgFill:Fill
+    }) {
+      let saved = charRender.bitmapTextAtts;
+      charRender.bitmapTextAtts :=
+      textAttsPut(charRender.bitmapTextAtts, atts);
+      text(t);
+      charRender.bitmapTextAtts := saved;
+    };
+    public func textFg(t:Text, fgFill:Fill) {
+      let saved = charRender.bitmapTextAtts;
+      charRender.bitmapTextAtts := textAttsFg(charRender.bitmapTextAtts, fgFill);
+      text(t);
+      charRender.bitmapTextAtts := saved;
+    };
+    public func textBg(t:Text, fgFill:Fill, bgFill:Fill) {
+      let saved = charRender.bitmapTextAtts;
+      charRender.bitmapTextAtts := textAttsBg(charRender.bitmapTextAtts, fgFill, bgFill);
+      text(t);
+      charRender.bitmapTextAtts := saved;
     };
   };
 
