@@ -220,8 +220,8 @@ module {
 
     public func bitmap(bd : BitMapData, ba : BitMapAtts) {
       let cellDim = { width = ba.zoom; height = ba.zoom };
+      begin(#none); // explicit positions below, relative to (0,0):
       if (ba.zoom > 0) {
-        begin(#none); // explicit positions below, relative to (0,0):
         for (i in I.range(0, bd.dim.width - 1)) {
           for (j in I.range(0, bd.dim.height - 1)) {
             let cellRect = {
@@ -231,17 +231,12 @@ module {
               dim = cellDim;
             };
             let cellFill =
-              if (bd.bits[j][i]) {
-              ba.fgFill
-            }
-            else {
-              ba.bgFill
-            };
+              if (bd.bits[j][i]) ba.fgFill else ba.bgFill;
             rect(cellRect, cellFill);
           }
         };
-        end();
-      }
+      };
+      end()
     };
 
     public func bitmapText(bdf : Char -> BitMapData, bta : BitMapTextAtts, t: Text) {
