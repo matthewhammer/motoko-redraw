@@ -24,7 +24,6 @@ module {
   public type Elms = Types.Elms;
   public type Out = Types.Out;
   public type Result = Types.Result;
-  public type TextAtts = Types.TextAtts;
   public type FlowAtts = Types.FlowAtts;
   public type Dir2D = Types.Dir2D;
   public type BitMapData = Types.BitMapData;
@@ -88,7 +87,6 @@ module {
   public func checkElmValid(elm:Elm) : Bool {
     switch elm {
     case (#node(n)) { checkNodeValid(n) };
-    case (#text(t, ta)) { true };
     case (#rect(r, f)) { true };
     }
   };
@@ -220,7 +218,6 @@ module {
 
     public func bitmap(bd : BitMapData, ba : BitMapAtts) {
       let cellDim = { width = ba.zoom; height = ba.zoom };
-      begin(#none); // explicit positions below, relative to (0,0):
       if (ba.zoom > 0) {
         for (i in I.range(0, bd.dim.width - 1)) {
           for (j in I.range(0, bd.dim.height - 1)) {
@@ -236,31 +233,17 @@ module {
           }
         };
       };
-      end()
     };
 
     public func bitmapText(bdf : Char -> BitMapData, bta : BitMapTextAtts, t: Text) {
       begin(#flow(bta.flow));
       for (c in t.chars()) {
         Debug.print ("bitmapText char: " # (debug_show c));
+        begin(#none); // explicit positions below, relative to (0,0):
         bitmap(bdf c, bta);
+        end()
       };
     };
-
-    func text_(t:Text, ta:TextAtts) {
-      Debug.print "text begin";
-      Debug.print t;
-      frame.elms.add(#text(t, ta));
-      Debug.print "text end";
-    };
-
-    public func text(t:Text, ta:TextAtts) {
-      // to do; fix and clean up:
-      begin(#flow({dir=#right; intraPad=0; interPad=0}));
-      text_(t, ta);
-      end();
-    };
-
 
     public func end() {
       Debug.print "end";
@@ -303,44 +286,7 @@ module {
     switch elm {
       case (#node(n)) { n.rect.dim };
       case (#rect(r,_)) r.dim;
-      case (#text(t,ta)) { dimOfText(t, ta) };
     }
-  };
-
-  func dimOfText(t:Text, ta:TextAtts) : Dim {
-    var w = 0;
-    var h = 0;
-    if (t.len() > 0) {
-      switch (ta.glyphFlow.dir) {
-      case (#right or #left) {
-             w := ta.glyphFlow.interPad * 2;
-             h := ta.glyphFlow.interPad * 2 + ta.glyphDim.height * ta.zoom;
-           };
-      case (#up or #down) {
-             w := ta.glyphFlow.interPad * 2 + ta.glyphDim.width * ta.zoom;
-             h := ta.glyphFlow.interPad * 2;
-           };
-      }
-    };
-    var first = true;
-    for (c in t.chars()) {
-      switch (ta.glyphFlow.dir) {
-      case (#right or #left) {
-             w += ta.glyphDim.width * ta.zoom;
-             if (not first) {
-               w += ta.glyphFlow.intraPad
-             }
-           };
-      case (#down or #up) {
-             w += ta.glyphDim.height * ta.zoom;
-             if (not first) {
-               h += ta.glyphFlow.intraPad
-             }
-           };
-      };
-      first := false
-    };
-    {width=w; height=h}
   };
 
   func dim(w:Nat, h:Nat) : Dim {
@@ -393,15 +339,9 @@ module {
     };
   };
 
-  func boundingRectOfText(t:Text, ta:TextAtts) : Rect {
-    let dim_ = dimOfText(t, ta);
-    {pos={x=0;y=0}; dim=dim_}
-  };
-
   func boundingRectOfElm(elm:Elm) : Rect {
     Debug.print "boundingRectOfElm";
     switch elm {
-      case (#text(t,ta)) { boundingRectOfText(t, ta) };
       case (#node(node)) { node.rect };
       case (#rect(r, _)) { r };
     }
@@ -451,7 +391,6 @@ module {
                elms= n.elms;
              }
            };
-      case (#text(t,ta)) { #text(t, ta) };
     }
   };
 
