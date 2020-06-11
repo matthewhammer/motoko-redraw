@@ -23,6 +23,34 @@ module {
     let c = false; // pronounced "cipher"
     let t = true;
     switch ch {
+      // to do -- add toLower toUpper to base library?
+
+      case 'A' bitsOfChar('a');
+      case 'B' bitsOfChar('b');
+      case 'C' bitsOfChar('c');
+      case 'D' bitsOfChar('d');
+      case 'E' bitsOfChar('e');
+      case 'F' bitsOfChar('f');
+      case 'G' bitsOfChar('g');
+      case 'H' bitsOfChar('h');
+      case 'J' bitsOfChar('j');
+      case 'K' bitsOfChar('k');
+      case 'L' bitsOfChar('l');
+      case 'M' bitsOfChar('m');
+      case 'N' bitsOfChar('n');
+      case 'O' bitsOfChar('o');
+      case 'P' bitsOfChar('p');
+      case 'Q' bitsOfChar('q');
+      case 'R' bitsOfChar('r');
+      case 'S' bitsOfChar('s');
+      case 'T' bitsOfChar('t');
+      case 'U' bitsOfChar('u');
+      case 'V' bitsOfChar('v');
+      case 'W' bitsOfChar('w');
+      case 'X' bitsOfChar('x');
+      case 'Y' bitsOfChar('y');
+      case 'Z' bitsOfChar('z');
+
       case '☺' ?[
            [ c, t, t, t, c ],
            [ t, c, t, c, t ],
