@@ -33,6 +33,7 @@ module {
       case 'F' bitsOfChar('f');
       case 'G' bitsOfChar('g');
       case 'H' bitsOfChar('h');
+      case 'I' bitsOfChar('i');
       case 'J' bitsOfChar('j');
       case 'K' bitsOfChar('k');
       case 'L' bitsOfChar('l');
