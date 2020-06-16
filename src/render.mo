@@ -416,7 +416,7 @@ module {
                case (#up) { x=p;
                             y=p + frameDim.height; }
              };
-             for (elm in frame.elms.iter()) {
+             for (elm in frame.elms.vals()) {
                elmsOut.add(repositionElm(elm, nextPos));
                let dim = dimOfElm(elm);
                let p = flow.intraPad;
