@@ -1,12 +1,12 @@
 // 2D rendering abstractions
-import Nat "mo:base/nat";
+import Nat "mo:base/Nat";
 import Char "mo:base/Char";
-import Buf "mo:base/buf";
-import List "mo:base/list";
-import P "mo:base/prelude";
-import I "mo:base/iter";
+import Buf "mo:base/Buf";
+import List "mo:base/List";
+import P "mo:base/Prelude";
+import I "mo:base/Iter";
 
-import Stack "mo:stand/stack";
+import Stack "mo:stand/Stack";
 import Debug "mo:stand/DebugOff";
 
 import Types "Types";
