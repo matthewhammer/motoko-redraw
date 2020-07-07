@@ -507,6 +507,13 @@ module {
            [ c, c, c, c, c ],
            [ c, c, c, c, c ]
         ];
+        case '+' ?[
+           [ c, c, t, c, c ],
+           [ c, c, t, c, c ],
+           [ t, t, t, t, t ],
+           [ c, c, t, c, c ],
+           [ c, c, t, c, c ]
+        ];
         case '/' ?[
            [ c, c, c, c, t ],
            [ c, c, c, t, c ],
