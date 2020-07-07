@@ -126,18 +126,18 @@ module {
 
   public func checkElmsValid(elms:Elms) : Bool {
     Debug.print "checkElmsValid begin";
-    if (elms.len() == 0) {
+    if (elms.size() == 0) {
       return true
     };
-    for (i in I.range(0, elms.len() - 1)) {
+    for (i in I.range(0, elms.size() - 1)) {
       Debug.print "checkElmsValid for1-body begin";
       Debug.print (Nat.toText i);
       let elm = elms[i];
       if (not checkElmValid(elm)) {
         return false
       };
-      if (i + 1 < elms.len() - 1) {
-        for (j in I.range(i + 1, elms.len() - 1)) {
+      if (i + 1 < elms.size() - 1) {
+        for (j in I.range(i + 1, elms.size() - 1)) {
           Debug.print "checkElmsValid for2-body begin";
           Debug.print (Nat.toText j);
           let elm2 = elms[j];
@@ -272,7 +272,7 @@ module {
     public func getElm() : Elm {
       Debug.print "getElm";
       let elms = getElms();
-      assert(elms.len() == 1);
+      assert(elms.size() == 1);
       elms[0]
     };
 
@@ -299,8 +299,8 @@ module {
     var height = 0;
     let intraPadSum =
       flow.interPad * 2 +
-      (if (elms.len() == 0) 0 else
-    (elms.len() - 1) * flow.intraPad)
+      (if (elms.size() == 0) 0 else
+    (elms.size() - 1) * flow.intraPad)
     ;
     switch (flow.dir) {
       case (#left or #right) {
