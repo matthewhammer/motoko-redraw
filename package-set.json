@@ -7,7 +7,7 @@
   },
   {
     "name": "stand",
-    "repo": "git@github.com:matthewhammer/motoko-stand.git",
+    "repo": "https://github.com/matthewhammer/motoko-stand",
     "version": "master",
     "dependencies": ["base"]
   }
