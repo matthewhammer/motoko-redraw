@@ -1,7 +1,7 @@
 // 2D rendering abstractions
 import Nat "mo:base/Nat";
 import Char "mo:base/Char";
-import Buf "mo:base/Buf";
+import Buffer "mo:base/Buffer";
 import List "mo:base/List";
 import P "mo:base/Prelude";
 import I "mo:base/Iter";
@@ -170,7 +170,7 @@ module {
   type Frame = {
     typ: FrameType;
     var fill: Fill;
-    elms: Buf.Buf<Elm>;
+    elms: Buffer.Buffer<Elm>;
   };
 
   // composable operations
@@ -179,7 +179,7 @@ module {
     var frame = {
       var fill=(#none : Fill);
       typ=#none;
-      elms=Buf.Buf<Elm>(0);
+      elms=Buffer.Buffer<Elm>(0);
     } : Frame;
 
     var stack = Stack.Stack<Frame>();
@@ -192,7 +192,7 @@ module {
       let new_frame : Frame = {
         var fill=(#none : Fill);
         typ=typ_;
-        elms=Buf.Buf<Elm>(0);
+        elms=Buffer.Buffer<Elm>(0);
       };
       stack.push(frame);
       frame := new_frame;
@@ -398,7 +398,7 @@ module {
   func repositionFrameElms(frame: Frame) : (Elms, Rect) {
     Debug.print "repositionFrameElms";
     let frameDim = dimOfFrame(frame);
-    var elmsOut = Buf.Buf<Elm>(0);
+    var elmsOut = Buffer.Buffer<Elm>(0);
     var posOut = {x=0; y=0};
     switch (frame.typ) {
       case (#none) {
