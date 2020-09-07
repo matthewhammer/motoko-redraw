@@ -2,7 +2,7 @@
   {
     "name": "base",
     "repo": "git@github.com:dfinity/motoko-base.git",
-    "version": "imports",
+    "version": "master",
     "dependencies": []
   },
   {
