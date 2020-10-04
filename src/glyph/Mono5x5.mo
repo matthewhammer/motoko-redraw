@@ -479,12 +479,33 @@ module {
            [ c, t, c, c, c ],
            [ c, t, t, c, c ]
         ];
-        case '\'' ?[
+        case '\"' ?[
            [ c, t, c, t, c ],
            [ c, t, c, t, c ],
            [ c, t, c, t, c ],
            [ c, c, c, c, c ],
            [ c, c, c, c, c ]
+        ];
+        case '@' ?[
+           [ c, t, t, t, c ],
+           [ t, c, c, c, t ],
+           [ t, c, t, t, c ],
+           [ t, c, c, c, t ],
+           [ c, t, t, t, c ]
+        ];
+        case '\'' ?[
+           [ c, c, t, c, c ],
+           [ c, c, t, c, c ],
+           [ c, c, t, c, c ],
+           [ c, c, c, c, c ],
+           [ c, c, c, c, c ]
+        ];
+        case '\\' ?[
+           [ t, c, c, c, c ],
+           [ c, t, c, c, c ],
+           [ c, c, t, c, c ],
+           [ c, c, c, t, c ],
+           [ c, c, c, c, t ]
         ];
         case '=' ?[
            [ c, c, c, c, c ],
