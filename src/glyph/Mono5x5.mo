@@ -486,12 +486,19 @@ module {
            [ c, c, c, c, c ],
            [ c, c, c, c, c ]
         ];
-        case '@' ?[
-           [ c, t, t, t, c ],
-           [ t, c, c, c, t ],
+        case '~' ?[
+           [ c, c, c, c, c ],
+           [ c, t, c, c, t ],
            [ t, c, t, t, c ],
+           [ c, c, c, c, c ],
+           [ c, c, c, c, c ]
+        ];
+        case '@' ?[
+           [ t, t, t, t, t ],
            [ t, c, c, c, t ],
-           [ c, t, t, t, c ]
+           [ t, c, t, t, t ],
+           [ t, c, t, c, c ],
+           [ t, t, t, t, t ]
         ];
         case '\'' ?[
            [ c, c, t, c, c ],
