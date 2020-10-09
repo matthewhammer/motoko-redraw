@@ -14,21 +14,21 @@ import Mono5x5 "glyph/Mono5x5";
 
 module {
 
-  public type Color = Types.Color;
+  public type Color = Types.Graphics.Color;
   public type Dim = Types.Dim;
   public type Pos = Types.Pos;
   public type Rect = Types.Rect;
-  public type Node = Types.Node;
-  public type Elm = Types.Elm;
-  public type Fill = Types.Fill;
-  public type Elms = Types.Elms;
-  public type Out = Types.Out;
-  public type Result = Types.Result;
-  public type FlowAtts = Types.FlowAtts;
-  public type Dir2D = Types.Dir2D;
-  public type BitMapData = Types.BitMapData;
-  public type BitMapAtts = Types.BitMapAtts;
-  public type BitMapTextAtts = Types.BitMapTextAtts;
+  public type Node = Types.Graphics.Node;
+  public type Elm = Types.Graphics.Elm;
+  public type Fill = Types.Graphics.Fill;
+  public type Elms = Types.Graphics.Elms;
+  public type Out = Types.Graphics.Out;
+  public type Result = Types.Graphics.Result;
+  public type FlowAtts = Types.Graphics.FlowAtts;
+  public type Dir2D = Types.Graphics.Dir2D;
+  public type BitMapData = Types.Graphics.BitMapData;
+  public type BitMapAtts = Types.Graphics.BitMapAtts;
+  public type BitMapTextAtts = Types.Graphics.BitMapTextAtts;
 
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {

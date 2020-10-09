@@ -6,8 +6,8 @@ module {
   };
 
   public type Service = actor {
-    query view : [Event.Event] -> Graphics.Result;
-    update : [Event.Event] -> Graphics.Result;
+    view : query [Event.Event] -> async Graphics.Result;
+    update : [Event.Event] -> async Graphics.Result;
   };
 
   public type Dim = { width: Nat;
