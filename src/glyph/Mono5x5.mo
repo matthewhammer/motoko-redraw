@@ -3,7 +3,7 @@ import Debug "mo:base/Debug";
 import P "mo:base/Prelude";
 
 module {
-  public func bitmapOfChar(c:Char) : Types.BitMapData {
+  public func bitmapOfChar(c:Char) : Types.Graphics.BitMapData {
     switch (bitsOfChar(c)) {
       case (?_bits) {
              { bits = _bits;
