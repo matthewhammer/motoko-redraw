@@ -1,6 +1,14 @@
 module {
 
-  public type Color = (Nat, Nat, Nat);
+  public type Object = {
+    view : [Event.Event] -> Graphics.Result;
+    update : [Event.Event] -> Graphics.Result;
+  };
+
+  public type Service = actor {
+    query view : [Event.Event] -> Graphics.Result;
+    update : [Event.Event] -> Graphics.Result;
+  };
 
   public type Dim = { width: Nat;
                       height: Nat };
@@ -11,52 +19,76 @@ module {
   public type Rect = { pos:Pos;
                        dim:Dim };
 
-  public type Node = { rect: Rect;
-                       fill: Fill;
-                       elms: Elms };
+  public module Event {
 
-  public type Elm = { #rect: (Rect, Fill);
-                      #node: Node };
+    public type Event = {
+      #quit;
+      #keyDown : [KeyInfo];
+      #mouseDown : Pos;
+      #windowSize : Dim;
+    };
 
-  public type Fill = {#open: (Color, Nat);
-                      #closed: Color;
-                      #none};
-
-  public type Elms = [Elm];
-
-  public type Out = {
-    #draw:Elm;
-    #redraw:[(Text, Elm)];
+    public type KeyInfo = {
+      key : Text;
+      alt : Bool;
+      ctrl : Bool;
+      meta: Bool;
+      shift: Bool
+    };
   };
 
-  public type Result = {
-    #ok: Out;
-    #err: Out;
+  public module Graphics {
+
+    public type Color = (Nat, Nat, Nat);
+
+    public type Node = { rect: Rect;
+                         fill: Fill;
+                         elms: Elms };
+
+    public type Elm = { #rect: (Rect, Fill);
+                        #node: Node };
+
+    public type Fill = {#open: (Color, Nat);
+                        #closed: Color;
+                        #none};
+
+    public type Elms = [Elm];
+
+    public type Out = {
+      #draw:Elm;
+      #redraw:[(Text, Elm)];
+    };
+
+    public type Result = {
+      #ok: Out;
+      #err: { out:Out; message:?Text };
+    };
+
+    public type FlowAtts = {
+      dir: Dir2D;
+      intraPad: Nat;
+      interPad: Nat;
+    };
+
+    public type Dir2D = {#up; #down; #left; #right};
+
+    public type BitMapData = {
+      dim: Dim;
+      bits: [[Bool]];
+    };
+
+    public type BitMapAtts = {
+      zoom: Nat;
+      fgFill: Fill;
+      bgFill: Fill;
+    };
+
+    public type BitMapTextAtts = {
+      zoom: Nat;
+      fgFill: Fill;
+      bgFill: Fill;
+      flow: FlowAtts;
+    };
   };
 
-  public type FlowAtts = {
-    dir: Dir2D;
-    intraPad: Nat;
-    interPad: Nat;
-  };
-
-  public type Dir2D = {#up; #down; #left; #right};
-
-  public type BitMapData = {
-    dim: Dim;
-    bits: [[Bool]];
-  };
-
-  public type BitMapAtts = {
-    zoom: Nat;
-    fgFill: Fill;
-    bgFill: Fill;
-  };
-
-  public type BitMapTextAtts = {
-    zoom: Nat;
-    fgFill: Fill;
-    bgFill: Fill;
-    flow: FlowAtts;
-  };
 }
