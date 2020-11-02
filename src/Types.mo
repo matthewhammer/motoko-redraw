@@ -1,13 +1,13 @@
 module {
 
   public type Object = {
-    view : [Event.Event] -> Graphics.Result;
-    update : [Event.Event] -> Graphics.Result;
+    view : [Event.EventInfo] -> Graphics.Result;
+    update : [Event.EventInfo] -> Graphics.Result;
   };
 
   public type Service = actor {
-    view : query [Event.Event] -> async Graphics.Result;
-    update : [Event.Event] -> async Graphics.Result;
+    view : query [Event.EventInfo] -> async Graphics.Result;
+    update : [Event.EventInfo] -> async Graphics.Result;
   };
 
   public type Dim = { width: Nat;
