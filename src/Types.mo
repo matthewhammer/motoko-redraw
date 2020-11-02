@@ -21,7 +21,16 @@ module {
 
   public module Event {
 
+    public type UserInfo = {
+      userName: Text;
+      textColor: (
+        (Nat, Nat, Nat),
+        (Nat, Nat, Nat)
+      )
+    };
+
     public type EventInfo = {
+      userInfo: UserInfo;
       nonce: ?Nat;
       dateTimeUtc: Text;   // use [ISO8601](https://tools.ietf.org/html/rfc3339)
       dateTimeLocal: Text; // use [ISO8601](https://tools.ietf.org/html/rfc3339)
