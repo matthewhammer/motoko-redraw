@@ -38,6 +38,7 @@ module {
     };
 
     public type Event = {
+      #skip;
       #quit;
       #keyDown : [KeyInfo];
       #mouseDown : Pos;
