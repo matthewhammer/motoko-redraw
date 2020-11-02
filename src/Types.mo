@@ -21,6 +21,13 @@ module {
 
   public module Event {
 
+    public type EventInfo = {
+      nonce: ?Nat;
+      dateTimeUtc: Text;   // use [ISO8601](https://tools.ietf.org/html/rfc3339)
+      dateTimeLocal: Text; // use [ISO8601](https://tools.ietf.org/html/rfc3339)
+      event: Event;
+    };
+
     public type Event = {
       #quit;
       #keyDown : [KeyInfo];
