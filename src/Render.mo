@@ -49,17 +49,6 @@ module {
     false
   };
 
-
-  // because Motoko lacks nice record update syntax
-  public func textAttsPut(ta:BitMapTextAtts,
-                          atts:{zoom:Nat; fgFill:Fill; bgFill:Fill}) : BitMapTextAtts {
-    { zoom = atts.zoom;
-      fgFill = atts.fgFill;
-      bgFill = atts.bgFill;
-      flow = ta.flow;
-    }
-  };
-
   // because Motoko lacks nice record update syntax
   public func textAttsFg(ta:BitMapTextAtts, fg:Fill) : BitMapTextAtts {
     { zoom = ta.zoom;
@@ -461,15 +450,9 @@ module {
     public func char(c:Char) {
       render.bitmap(bitmapData c, bitmapTextAtts)
     };
-    public func charAtts(c:Char,
-                         atts:{
-      zoom:Nat;
-      fgFill:Fill;
-      bgFill:Fill
-    }) {
+    public func charAtts(c:Char, bta : BitMapTextAtts) {
       let saved = bitmapTextAtts;
-      bitmapTextAtts :=
-      textAttsPut(bitmapTextAtts, atts);
+      bitmapTextAtts := bta;
       char(c);
       bitmapTextAtts := saved;
     };
@@ -495,15 +478,9 @@ module {
         cr.bitmapTextAtts,
         t)
     };
-    public func textAtts(t:Text,
-                         atts:{
-      zoom:Nat;
-      fgFill:Fill;
-      bgFill:Fill
-    }) {
+    public func textAtts(t:Text, bta : BitMapTextAtts) {
       let saved = charRender.bitmapTextAtts;
-      charRender.bitmapTextAtts :=
-      textAttsPut(charRender.bitmapTextAtts, atts);
+      charRender.bitmapTextAtts := bta;
       text(t);
       charRender.bitmapTextAtts := saved;
     };
