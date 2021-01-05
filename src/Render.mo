@@ -398,12 +398,12 @@ module {
       case (#flow(flow)) {
              let p = flow.interPad;
              var nextPos = switch (flow.dir) {
-               case (#right) { x=p; y=p };
-               case (#down) { x=p; y=p };
-               case (#left) { x=p + frameDim.width;
-                              y=p };
-               case (#up) { x=p;
-                            y=p + frameDim.height; }
+               case (#right) { { x=p; y=p } };
+               case (#down) { { x=p; y=p } };
+               case (#left) { { x=p + frameDim.width;
+                              y=p } };
+               case (#up) { { x=p;
+                            y=p + frameDim.height; } }
              };
              for (elm in frame.elms.vals()) {
                elmsOut.add(repositionElm(elm, nextPos));
