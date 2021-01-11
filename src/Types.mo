@@ -2,8 +2,8 @@ module {
 
   public type GraphicsRequest = {
     #none;
-    #all;
-    #last;
+    #all : Dim;
+    #last : Dim;
   };
 
   public type Service = actor {
