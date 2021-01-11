@@ -1,13 +1,14 @@
 module {
 
-  public type Object = {
-    view : [Event.EventInfo] -> Graphics.Result;
-    update : [Event.EventInfo] -> Graphics.Result;
+  public type GraphicsRequest = {
+    #none;
+    #all : Dim;
+    #last : Dim;
   };
 
   public type Service = actor {
     view : query [Event.EventInfo] -> async Graphics.Result;
-    update : [Event.EventInfo] -> async Graphics.Result;
+    update : ([Event.EventInfo], GraphicsRequest) -> async [Graphics.Result];
   };
 
   public type Dim = { width: Nat;
@@ -43,6 +44,8 @@ module {
       #keyDown : [KeyInfo];
       #mouseDown : Pos;
       #windowSize : Dim;
+      #clipBoard : Text;
+      #fileRead : {path: Text; content: Text};
     };
 
     public type KeyInfo = {
