@@ -81,7 +81,7 @@ module {
 
     public type Result = {
       #ok: Out;
-      #err: { out:Out; message:?Text };
+      #err: ?Text;
     };
 
     public type FlowAtts = {
