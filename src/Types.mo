@@ -84,14 +84,6 @@ module {
       #err: ?Text;
     };
 
-    public type FlowAtts = {
-      dir: Dir2D;
-      intraPad: Nat;
-      interPad: Nat;
-    };
-
-    public type Dir2D = {#up; #down; #left; #right};
-
   };
 
 }

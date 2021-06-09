@@ -1,9 +1,10 @@
 import Types "../Types";
 import Debug "mo:base/Debug";
 import P "mo:base/Prelude";
+import GlyphTypes "Types";
 
 module {
-  public func bitmapOfChar(c:Char) : Types.Graphics.BitMapData {
+  public func bitmapOfChar(c:Char) : GlyphTypes.BitMapData {
     switch (bitsOfChar(c)) {
       case (?_bits) {
              { bits = _bits;
