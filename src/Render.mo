@@ -127,7 +127,7 @@ module {
       if (not checkElmValid(elm)) {
         return false
       };
-      if (i + 1 < elms.size() - 1) {
+      if (i + 1 < ((elms.size() - 1) : Nat)) {
         for (j in I.range(i + 1, elms.size() - 1)) {
           Debug.print "checkElmsValid for2-body begin";
           Debug.print (Nat.toText j);
@@ -291,7 +291,7 @@ module {
     let intraPadSum =
       flow.interPad * 2 +
       (if (elms.size() == 0) 0 else
-    (elms.size() - 1) * flow.intraPad)
+    ((elms.size() - 1) : Nat) * flow.intraPad)
     ;
     switch (flow.dir) {
       case (#left or #right) {
