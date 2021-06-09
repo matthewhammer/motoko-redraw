@@ -26,11 +26,11 @@ module {
   public type Out = Types.Graphics.Out;
   public type Result = Types.Graphics.Result;
 
-  public type FlowAtts = GlyphTypes.Graphics.FlowAtts;
-  public type Dir2D = GlyphTypes.Graphics.Dir2D;
-  public type BitMapData = GlyphTypes.Graphics.BitMapData;
-  public type BitMapAtts = GlyphTypes.Graphics.BitMapAtts;
-  public type BitMapTextAtts = GlyphTypes.Graphics.BitMapTextAtts;
+  public type FlowAtts = GlyphTypes.FlowAtts;
+  public type Dir2D = GlyphTypes.Dir2D;
+  public type BitMapData = GlyphTypes.BitMapData;
+  public type BitMapAtts = GlyphTypes.BitMapAtts;
+  public type BitMapTextAtts = GlyphTypes.BitMapTextAtts;
 
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {
