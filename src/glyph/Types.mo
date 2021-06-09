@@ -9,6 +9,8 @@ module {
 
   public type Dir2D = {#up; #down; #left; #right};
 
+  public type Fill = Types.Graphics.Fill;
+
   public type BitMapData = {
     dim: Types.Dim;
     bits: [[Bool]];
@@ -16,14 +18,14 @@ module {
 
   public type BitMapAtts = {
     zoom: Nat;
-    fgFill: Types.Fill;
-    bgFill: Types.Fill;
+    fgFill: Fill;
+    bgFill: Fill;
   };
 
   public type BitMapTextAtts = {
     zoom: Nat;
-    fgFill: Types.Fill;
-    bgFill: Types.Fill;
+    fgFill: Fill;
+    bgFill: Fill;
     flow: FlowAtts;
   };
 }
