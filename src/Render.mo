@@ -10,6 +10,7 @@ import Stack "mo:stand/Stack";
 import Debug "mo:stand/DebugOff";
 
 import Types "Types";
+import GlyphTypes "glyph/Types";
 import Mono5x5 "glyph/Mono5x5";
 
 module {
@@ -24,11 +25,12 @@ module {
   public type Elms = Types.Graphics.Elms;
   public type Out = Types.Graphics.Out;
   public type Result = Types.Graphics.Result;
-  public type FlowAtts = Types.Graphics.FlowAtts;
-  public type Dir2D = Types.Graphics.Dir2D;
-  public type BitMapData = Types.Graphics.BitMapData;
-  public type BitMapAtts = Types.Graphics.BitMapAtts;
-  public type BitMapTextAtts = Types.Graphics.BitMapTextAtts;
+
+  public type FlowAtts = GlyphTypes.FlowAtts;
+  public type Dir2D = GlyphTypes.Dir2D;
+  public type BitMapData = GlyphTypes.BitMapData;
+  public type BitMapAtts = GlyphTypes.BitMapAtts;
+  public type BitMapTextAtts = GlyphTypes.BitMapTextAtts;
 
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {
@@ -125,7 +127,7 @@ module {
       if (not checkElmValid(elm)) {
         return false
       };
-      if (i + 1 < elms.size() - 1) {
+      if (i + 1 < ((elms.size() - 1) : Nat)) {
         for (j in I.range(i + 1, elms.size() - 1)) {
           Debug.print "checkElmsValid for2-body begin";
           Debug.print (Nat.toText j);
@@ -289,7 +291,7 @@ module {
     let intraPadSum =
       flow.interPad * 2 +
       (if (elms.size() == 0) 0 else
-    (elms.size() - 1) * flow.intraPad)
+    ((elms.size() - 1) : Nat) * flow.intraPad)
     ;
     switch (flow.dir) {
       case (#left or #right) {

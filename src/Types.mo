@@ -81,34 +81,9 @@ module {
 
     public type Result = {
       #ok: Out;
-      #err: { out:Out; message:?Text };
+      #err: ?Text;
     };
 
-    public type FlowAtts = {
-      dir: Dir2D;
-      intraPad: Nat;
-      interPad: Nat;
-    };
-
-    public type Dir2D = {#up; #down; #left; #right};
-
-    public type BitMapData = {
-      dim: Dim;
-      bits: [[Bool]];
-    };
-
-    public type BitMapAtts = {
-      zoom: Nat;
-      fgFill: Fill;
-      bgFill: Fill;
-    };
-
-    public type BitMapTextAtts = {
-      zoom: Nat;
-      fgFill: Fill;
-      bgFill: Fill;
-      flow: FlowAtts;
-    };
   };
 
 }

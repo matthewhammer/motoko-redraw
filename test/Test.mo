@@ -5,17 +5,13 @@ import Render "../src/Render";
 import Mono5x5 "../src/glyph/Mono5x5";
 
 actor {
-  public func selfTest() {
-    // to do
-    Debug.print "selfTest: success"
+  public func reset() : async ?() {
+    ?()
   };
 
-  public func doNextCall() : async Bool {
-    return false
-  };
-
-  public func redraw() : async Render.Result {
+  public func test() : async ?() {
     // to do
-    #ok(#redraw([]))
+    Debug.print "hello world";
+    ?()
   };
 }
