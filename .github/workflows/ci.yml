@@ -28,7 +28,11 @@ jobs:
         dfx deploy --no-wallet Test
     - name: Test
       run: |
-        echo "to do"
+        (for f in test/script/*.test.sh; do
+          echo "==== Run test $f ===="
+          dfx canister --no-wallet call Test reset '()'
+          ic-repl -r http://localhost:8000 "$f" || exit
+        done)
     - name: stop dfx
       run: |
         echo "dfx stop"
