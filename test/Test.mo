@@ -5,8 +5,13 @@ import Render "../src/Render";
 import Mono5x5 "../src/glyph/Mono5x5";
 
 actor {
-  public func test() {
+  public func reset() async ?() {
+    ?()
+  };
+
+  public func test() async ?() {
     // to do
-    Debug.print "hello world"
+    Debug.print "hello world";
+    ?()
   };
 }
