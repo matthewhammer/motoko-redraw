@@ -10,6 +10,7 @@ import Stack "mo:stand/Stack";
 import Debug "mo:stand/DebugOff";
 
 import Types "Types";
+import GlyphTypes "glyph/Types";
 import Mono5x5 "glyph/Mono5x5";
 
 module {
@@ -24,11 +25,12 @@ module {
   public type Elms = Types.Graphics.Elms;
   public type Out = Types.Graphics.Out;
   public type Result = Types.Graphics.Result;
-  public type FlowAtts = Types.Graphics.FlowAtts;
-  public type Dir2D = Types.Graphics.Dir2D;
-  public type BitMapData = Types.Graphics.BitMapData;
-  public type BitMapAtts = Types.Graphics.BitMapAtts;
-  public type BitMapTextAtts = Types.Graphics.BitMapTextAtts;
+
+  public type FlowAtts = GlyphTypes.Graphics.FlowAtts;
+  public type Dir2D = GlyphTypes.Graphics.Dir2D;
+  public type BitMapData = GlyphTypes.Graphics.BitMapData;
+  public type BitMapAtts = GlyphTypes.Graphics.BitMapAtts;
+  public type BitMapTextAtts = GlyphTypes.Graphics.BitMapTextAtts;
 
   // - - - - - - - - - - - - - -
   public func checkApartRects(rect1:Rect, rect2:Rect) : Bool {
